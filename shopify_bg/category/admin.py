@@ -3,8 +3,10 @@ from django.contrib import admin
 from shopify_bg.category.models import Category
 
 
-admin.site.register(Category)
+@admin.register(Category)
+class CategoryAdmin(admin.ModelAdmin):
+    prepopulated_fields = {'slug': ('category_name',)}
+    list_display = ('category_name', 'slug',)
 
-# @admin.register(Category)
-# class CategoryAdmin(admin.ModelAdmin):
-#     list_display = ('category_name',)
+# admin.site.register(Category)
+
