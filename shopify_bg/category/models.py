@@ -1,12 +1,13 @@
 from django.db import models
+from django.urls import reverse
 
 
 class Category(models.Model):
-    TYPE_CHOICE_JACKETS = 'jackets'
-    TYPE_CHOICE_JEANS = 'jeans'
-    TYPE_CHOICE_SHIRTS = 'shirts'
-    TYPE_CHOICE_SHOES = 'shoes'
-    TYPE_CHOICE_T_SHIRTS = 't-shirts'
+    TYPE_CHOICE_JACKETS = 'Jackets'
+    TYPE_CHOICE_JEANS = 'Jeans'
+    TYPE_CHOICE_SHIRTS = 'Shirts'
+    TYPE_CHOICE_SHOES = 'Shoes'
+    TYPE_CHOICE_T_SHIRTS = 'T-Shirts'
 
     TYPE_CHOICES = (
         (TYPE_CHOICE_JACKETS, 'Jackets'),
@@ -24,6 +25,9 @@ class Category(models.Model):
     class Meta:
         verbose_name = 'category'
         verbose_name_plural = 'categories'
+
+    def get_url(self):
+        return reverse('products by category', args=[self.slug])
 
     def __str__(self):
         return self.category_name
