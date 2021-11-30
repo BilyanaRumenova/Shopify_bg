@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'shopify_bg.category',
     'shopify_bg.accounts',
     'shopify_bg.store',
+    'shopify_bg.carts',
 ]
 
 MIDDLEWARE = [
@@ -69,6 +70,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
 
                 'shopify_bg.category.context_processors.menu_links',
+                'shopify_bg.carts.context_processors.counter',
             ],
         },
     },
