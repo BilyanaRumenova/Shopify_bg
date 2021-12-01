@@ -2,6 +2,7 @@ from django.db import models
 from django.urls import reverse
 
 from shopify_bg.category.models import Category
+from shopify_bg.store.managers import VariationManager
 
 
 class Product(models.Model):
@@ -21,3 +22,27 @@ class Product(models.Model):
 
     def __str__(self):
         return self.product_name
+
+
+class Variation(models.Model):
+    TYPE_CHOICE_COLOUR = 'colour'
+    TYPE_CHOICE_SIZE = 'size'
+
+    VARIATION_CATEGORY_CHOICES = (
+        (TYPE_CHOICE_COLOUR, 'colour'),
+        (TYPE_CHOICE_SIZE, 'size'),
+    )
+
+    product = models.ForeignKey(Product, models.CASCADE)
+    variation_category = models.CharField(max_length=100, choices=VARIATION_CATEGORY_CHOICES, )
+    variation_value = models.CharField(max_length=100)
+    is_active = models.BooleanField(default=True)
+    date_created = models.DateTimeField(auto_now=True)
+
+    objects = VariationManager()
+
+    def __str__(self):
+        return self.variation_value
+
+
+
