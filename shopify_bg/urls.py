@@ -10,4 +10,5 @@ urlpatterns = [
     path('', home, name='home'),
     path('store/', include('shopify_bg.store.urls')),
     path('cart/', include('shopify_bg.carts.urls')),
+    path('accounts/', include('shopify_bg.accounts.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
